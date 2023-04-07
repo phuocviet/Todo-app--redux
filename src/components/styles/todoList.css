@@ -1,38 +1,38 @@
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
-textarea{
+input {
   background: none;
   border: none;
   font-size: 16px;
   text-decoration: none;
   margin: auto 20px;
 }
-span{
+span {
   margin: auto 10px;
 }
-.unComplete{
+.unComplete {
   color: red;
 }
-.completed{
+.completed {
   color: green;
 }
-.card{
+.card {
   display: flex;
   margin-top: 10px;
-  background-color: rgb(255,250,200, 50%);
+  background-color: rgb(255, 250, 200, 50%);
   justify-content: space-between;
   width: 600px;
 }
-.cardbuttons{
+.cardbuttons {
   margin: auto 10px;
 }
-li button{
+li button {
   background: none;
   border: none;
   font-size: larger;
   cursor: pointer;
 }
-li button:hover{
+li button:hover {
   color: red;
 }

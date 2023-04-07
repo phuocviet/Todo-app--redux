@@ -1,44 +1,53 @@
-import { useRef } from 'react'
-import './styles/todoList.css'
-import {AiFillEdit, AiFillCheckCircle, AiFillDelete} from 'react-icons/ai'
+import { useRef } from 'react';
+import './styles/todoList.css';
+import { AiFillEdit, AiFillCheckCircle, AiFillDelete } from 'react-icons/ai';
+import { SiIfixit } from 'react-icons/si';
 
 const TodoList = (props) => {
-  const { item, removeTodo, completeTodo, updateTodo} =props
-  const inputRef = useRef(true) 
-     
-    const changeFocus = () => {
-      inputRef.current.disabled = false
-      inputRef.current.focus()
-    }
-    const upadate = (id, value, e) =>{
-        if(e.which === 16){
-        updateTodo({id, item: value})
-        inputRef.current.disabled = true
-      }
-    }
+  const { item, removeTodo, completeTodo, updateTodo, unCompleteTodo } = props;
+  const inputRef = useRef(true);
 
+  const changeFocus = () => {
+    inputRef.current.disabled = false;
+    inputRef.current.focus();
+  };
+  const upadate = (id, value, e) => {
+    updateTodo({ id, item: value });
+    inputRef.current.disabled = false;
+  };
 
-  
   return (
     <li key={item.id}>
-      <div className='card'>
-      <textarea 
-        ref={inputRef} 
-        disabled={inputRef} 
-        defaultValue={item.item} 
-        onKeyUp={(e) => upadate(item.id, inputRef.current.value, e )}
+      <div className="card">
+        <input
+          ref={inputRef}
+          disabled={inputRef}
+          defaultValue={item.item}
+          onKeyUp={(e) => upadate(item.id, inputRef.current.value, e)}
         />
-        {item.completed && <span className='completed'>Done</span>}
-        {!item.completed && <span className='unComplete'>Need to be done</span>}
-        <div className='cardbuttons'>
-        <button onClick={() =>removeTodo(item.id)}><AiFillDelete/></button>
-        <button onClick={() => completeTodo(item.id)}><AiFillCheckCircle/></button>
-        <button onClick={() =>changeFocus()}><AiFillEdit/></button>
+        {item.completed && <span className="completed">Done</span>}
+        {!item.completed && <span className="unComplete">Need to be done</span>}
+        <div className="cardbuttons">
+          <button onClick={() => removeTodo(item.id)}>
+            <AiFillDelete />
+          </button>
+          {!item.completed && (
+            <button onClick={() => completeTodo(item.id)}>
+              <AiFillCheckCircle />
+            </button>
+          )}
+          {item.completed && (
+            <button onClick={() => unCompleteTodo(item.id)}>
+              <SiIfixit />
+            </button>
+          )}
+          <button onClick={() => changeFocus()}>
+            <AiFillEdit />
+          </button>
         </div>
       </div>
     </li>
-  ) 
-}
+  );
+};
 
-
-export default TodoList
+export default TodoList;
